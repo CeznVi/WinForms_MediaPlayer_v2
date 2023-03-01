@@ -206,6 +206,11 @@ namespace WinPlayer
             }
         }
 
+        /// <summary>
+        /// Удалить медиафайл из плейлиста
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonRemoveMediaRecord_Click(object sender, EventArgs e)
         {
             if (toolStripComboBoxPlayList.SelectedItem != null)
@@ -232,11 +237,54 @@ namespace WinPlayer
             }
         }
 
+        /// <summary>
+        /// Переименовать медиарекорд
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonEditMediaRecord_Click(object sender, EventArgs e)
         {
+            if (toolStripComboBoxPlayList.SelectedItem != null)
+            {
+                if (listBoxMediaRecords.SelectedItem != null)
+                {
+                    NewEditPlayListForm renameMediaRecord = new NewEditPlayListForm(listBoxMediaRecords.SelectedItem.ToString().TrimStart('.'));
+
+                    if (renameMediaRecord.ShowDialog() == DialogResult.OK)
+                    {
+                        MediaRecord old = (MediaRecord)listBoxMediaRecords.SelectedItem;
+                        string newName = renameMediaRecord.PlayListName;
+                        MessageBox.Show($"Новое имя = {newName}");
+                    }
+
+                    
+                }
+                //if (newEditPlayListForm.ShowDialog() == DialogResult.OK)
+                //{
+                //    //_parentForm.PlayListsController.RenamePlayList(_currentToolStripMenuItem.Text, newEditPlayListForm.PlayListName);
+
+                //    //_currentToolStripMenuItem.Text = newEditPlayListForm.PlayListName;
+
+                //    //PlayList current = (PlayList)toolStripComboBoxPlayList.SelectedItem;
+                //    //toolStripComboBoxPlayList.Items.Remove(current);
+
+                //    //current.Name = newEditPlayListForm.PlayListName;
+                //    //toolStripComboBoxPlayList.Items.Add(current);
+                //    //toolStripComboBoxPlayList.SelectedItem = current;
+                //}
+            }
+            else
+            {
+                MessageBox.Show("Выберите плейлист и медиарекорд для редактирования.", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
         }
 
+        /// <summary>
+        /// Добавить из папки все медиарекорды
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonOpenFolder_Click(object sender, EventArgs e)
         {
             if (toolStripComboBoxPlayList.SelectedItem != null)
@@ -267,5 +315,7 @@ namespace WinPlayer
             }
 
         }
+
+
     }
 }

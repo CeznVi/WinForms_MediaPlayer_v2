@@ -206,11 +206,6 @@ namespace WinPlayer
             }
         }
 
-        private void buttonEditMediaRecord_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonRemoveMediaRecord_Click(object sender, EventArgs e)
         {
             if (toolStripComboBoxPlayList.SelectedItem != null)
@@ -235,6 +230,42 @@ namespace WinPlayer
                     }
                 }
             }
+        }
+
+        private void buttonEditMediaRecord_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonOpenFolder_Click(object sender, EventArgs e)
+        {
+            if (toolStripComboBoxPlayList.SelectedItem != null)
+            {
+                FolderBrowserDialog dialog = new FolderBrowserDialog();
+                dialog.Description = "Выбирите папку для добавления медиафайлов";
+                dialog.SelectedPath = GetPath.MediaAndTrashDir();
+
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+
+                    var allFiles = Directory.GetFiles(dialog.SelectedPath);
+                    PlayList tmp = ((PlayList)toolStripComboBoxPlayList.SelectedItem);
+                    
+                    foreach (var file in allFiles)
+                    {
+                        if (MediaFilter.IsMediaFile(file))
+                        {
+                            tmp.MediaRecords.Add(new MediaRecord(file));
+                            listBoxMediaRecords.Items.Add(tmp.MediaRecords.Last());
+                            _parentForm.PlayListsController.AddNewMediaRecord(
+                                tmp.MediaRecords.Last(), tmp);
+                        }
+                    }
+
+                }
+            }
+
         }
     }
 }

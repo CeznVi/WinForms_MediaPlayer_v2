@@ -15,5 +15,12 @@ namespace WinPlayer.Playlist
             path = Directory.GetParent(Directory.GetParent(Directory.GetParent(path).FullName).FullName).FullName + "\\Media";
             return path;
         }
+        public static string MediaAndTrashDir()
+        {
+            string path = Directory.GetCurrentDirectory();
+            path = Directory.GetParent(Directory.GetParent(Directory.GetParent(path).FullName).FullName).FullName + "\\MediaAndTrash";
+            return path;
+        }
+
     }
 }

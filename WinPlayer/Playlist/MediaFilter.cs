@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,9 +34,21 @@ namespace WinPlayer.Playlist
 
         public static bool IsMediaFile(string path)
         {
-            return true;
+           string extension = (Path.GetExtension(path)).TrimStart('.');
+
+            foreach (string item in nameAllMediaFile) 
+            { 
+                if(item == extension)
+                    return true;
+            }
+
+            return false;
         }
 
+        /// <summary>
+        /// Возвращает путь с медиафайлами и мусорными файлами
+        /// </summary>
+        /// <returns></returns>
         public static string GetOpenFileDialogFilter()
         {
             return

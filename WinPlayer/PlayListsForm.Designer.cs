@@ -44,6 +44,7 @@
             this.buttonEditMediaRecord = new System.Windows.Forms.Button();
             this.buttonAddMediaRecord = new System.Windows.Forms.Button();
             this.listBoxMediaRecords = new System.Windows.Forms.ListBox();
+            this.buttonOpenFolder = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStripPlaylists.SuspendLayout();
@@ -109,6 +110,7 @@
             this.toolStripButtonCreatePlayList.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCreatePlayList.BackgroundImage")));
             this.toolStripButtonCreatePlayList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.toolStripButtonCreatePlayList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonCreatePlayList.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButtonCreatePlayList.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonCreatePlayList.Margin = new System.Windows.Forms.Padding(3);
             this.toolStripButtonCreatePlayList.Name = "toolStripButtonCreatePlayList";
@@ -152,6 +154,7 @@
             // panelMediaControls
             // 
             this.panelMediaControls.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panelMediaControls.Controls.Add(this.buttonOpenFolder);
             this.panelMediaControls.Controls.Add(this.buttonRemoveMediaRecord);
             this.panelMediaControls.Controls.Add(this.buttonEditMediaRecord);
             this.panelMediaControls.Controls.Add(this.buttonAddMediaRecord);
@@ -166,8 +169,7 @@
             // 
             this.buttonRemoveMediaRecord.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonRemoveMediaRecord.BackgroundImage")));
             this.buttonRemoveMediaRecord.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.buttonRemoveMediaRecord.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonRemoveMediaRecord.Location = new System.Drawing.Point(3, 131);
+            this.buttonRemoveMediaRecord.Location = new System.Drawing.Point(3, 195);
             this.buttonRemoveMediaRecord.Name = "buttonRemoveMediaRecord";
             this.buttonRemoveMediaRecord.Size = new System.Drawing.Size(64, 64);
             this.buttonRemoveMediaRecord.TabIndex = 2;
@@ -178,11 +180,10 @@
             // 
             this.buttonEditMediaRecord.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonEditMediaRecord.BackgroundImage")));
             this.buttonEditMediaRecord.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.buttonEditMediaRecord.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonEditMediaRecord.Location = new System.Drawing.Point(3, 67);
+            this.buttonEditMediaRecord.Location = new System.Drawing.Point(3, 131);
             this.buttonEditMediaRecord.Name = "buttonEditMediaRecord";
             this.buttonEditMediaRecord.Size = new System.Drawing.Size(64, 64);
-            this.buttonEditMediaRecord.TabIndex = 1;
+            this.buttonEditMediaRecord.TabIndex = 2;
             this.buttonEditMediaRecord.UseVisualStyleBackColor = true;
             // 
             // buttonAddMediaRecord
@@ -206,6 +207,18 @@
             this.listBoxMediaRecords.Size = new System.Drawing.Size(314, 381);
             this.listBoxMediaRecords.TabIndex = 4;
             this.listBoxMediaRecords.DoubleClick += new System.EventHandler(this.listBoxMediaRecords_DoubleClick);
+            // 
+            // buttonOpenFolder
+            // 
+            this.buttonOpenFolder.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonOpenFolder.BackgroundImage")));
+            this.buttonOpenFolder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonOpenFolder.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonOpenFolder.Location = new System.Drawing.Point(3, 67);
+            this.buttonOpenFolder.Name = "buttonOpenFolder";
+            this.buttonOpenFolder.Size = new System.Drawing.Size(64, 64);
+            this.buttonOpenFolder.TabIndex = 2;
+            this.buttonOpenFolder.UseVisualStyleBackColor = true;
+            this.buttonOpenFolder.Click += new System.EventHandler(this.buttonOpenFolder_Click);
             // 
             // PlayListsForm
             // 
@@ -253,5 +266,6 @@
         private System.Windows.Forms.Button buttonEditMediaRecord;
         private System.Windows.Forms.Button buttonAddMediaRecord;
         private System.Windows.Forms.ListBox listBoxMediaRecords;
+        private System.Windows.Forms.Button buttonOpenFolder;
     }
 }

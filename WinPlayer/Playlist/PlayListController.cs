@@ -17,7 +17,9 @@ namespace WinPlayer.Playlist
         public List<PlayList> PlayLists;
         private XDocument _xDocument;
         private XElement _rootElement;
-        
+
+        string baseFile = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<Playlists/>\r";
+
         public string PathToXml
         {
             get { return _pathToXMLFile; }
@@ -25,10 +27,13 @@ namespace WinPlayer.Playlist
             {
                 if (!File.Exists(value))
                 {
-                   throw new FileNotFoundException();
+                    MessageBox.Show($"Ошибка при загрузке ХМL -- файл не найден", "Ошибка при загрузке", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    File.WriteAllText(value, baseFile);
+                    //throw new FileNotFoundException();
                 }
                 if (Path.GetExtension(value).ToLower() != ".xml")
                 {
+                    MessageBox.Show($"Ошибка при загрузке ХМL -- не корректный формат файла указан в настройках программы", "Ошибка при загрузке", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw new ArgumentException("Не корректный формат файла");
                 }
                 _pathToXMLFile = value;
@@ -44,12 +49,12 @@ namespace WinPlayer.Playlist
 
         private void LoadXmlData()
         {
-            _xDocument = XDocument.Load(PathToXml);
-
-            _rootElement = _xDocument.Element(PlayListXMLMap.Root.ElementName);
-
             try
             {
+                _xDocument = XDocument.Load(PathToXml);
+
+                _rootElement = _xDocument.Element(PlayListXMLMap.Root.ElementName);
+
                 IEnumerable<XElement> playlistElements = _rootElement.Elements(PlayListXMLMap.Root.PlayList.ElementName);
 
                 foreach (var onePlayList in playlistElements)
@@ -74,12 +79,13 @@ namespace WinPlayer.Playlist
 
                 if (error == DialogResult.OK)
                 {
-                    string baseFile = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<Playlists/>\r";  
                     File.Delete(_pathToXMLFile);
                     File.Create(_pathToXMLFile).Close();
                     File.WriteAllText(_pathToXMLFile, baseFile);
                     LoadXmlData();
                 }
+                else
+                    throw new XmlException("Критическая ошибка в ХМЛ");
 
             }
         }

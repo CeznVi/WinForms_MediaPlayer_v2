@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.XPath;
 
 namespace WinPlayer.Playlist
 {
@@ -15,6 +17,7 @@ namespace WinPlayer.Playlist
         public List<PlayList> PlayLists;
         private XDocument _xDocument;
         private XElement _rootElement;
+        
         public string PathToXml
         {
             get { return _pathToXMLFile; }
@@ -22,7 +25,7 @@ namespace WinPlayer.Playlist
             {
                 if (!File.Exists(value))
                 {
-                    throw new FileNotFoundException();
+                   throw new FileNotFoundException();
                 }
                 if (Path.GetExtension(value).ToLower() != ".xml")
                 {
@@ -45,20 +48,39 @@ namespace WinPlayer.Playlist
 
             _rootElement = _xDocument.Element(PlayListXMLMap.Root.ElementName);
 
-            IEnumerable<XElement> playlistElements = _rootElement.Elements(PlayListXMLMap.Root.PlayList.ElementName);
-
-            foreach (var onePlayList in playlistElements)
+            try
             {
-                PlayList tmp = new PlayList();
-                tmp.MediaRecords = new List<MediaRecord>();
-                tmp.Name = onePlayList.Attribute(PlayListXMLMap.Root.PlayList.Attributes.Name).Value;
+                IEnumerable<XElement> playlistElements = _rootElement.Elements(PlayListXMLMap.Root.PlayList.ElementName);
 
-                IEnumerable<XElement> mediaRecords = onePlayList.Elements(PlayListXMLMap.Root.PlayList.MediaRecord.ElementName);
-                foreach (var oneRecord in mediaRecords)
+                foreach (var onePlayList in playlistElements)
                 {
-                    tmp.MediaRecords.Add(new MediaRecord(oneRecord.Attribute(PlayListXMLMap.Root.PlayList.MediaRecord.Attributes.Path).Value));
+                    PlayList tmp = new PlayList();
+                    tmp.MediaRecords = new List<MediaRecord>();
+                    tmp.Name = onePlayList.Attribute(PlayListXMLMap.Root.PlayList.Attributes.Name).Value;
+
+                    IEnumerable<XElement> mediaRecords = onePlayList.Elements(PlayListXMLMap.Root.PlayList.MediaRecord.ElementName);
+                    foreach (var oneRecord in mediaRecords)
+                    {
+                        tmp.MediaRecords.Add(new MediaRecord(oneRecord.Attribute(PlayListXMLMap.Root.PlayList.MediaRecord.Attributes.Path).Value));
+                    }
+                    PlayLists.Add(tmp);
                 }
-                PlayLists.Add(tmp);
+            }
+            catch (Exception e)
+            {
+                var error = MessageBox.Show($"Ошибка при загрузке данных из ХМЛ:\n\n{e.Message.ToUpper()}\n\nЧтобы избавиться от" +
+                    $" ошибки нажмите ОК (хмл файл будет очищен)\n" +
+                    $"Если нажать отмена - приложение закроется", "Ошибка при загрузке", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+
+                if (error == DialogResult.OK)
+                {
+                    string baseFile = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<Playlists/>\r";  
+                    File.Delete(_pathToXMLFile);
+                    File.Create(_pathToXMLFile).Close();
+                    File.WriteAllText(_pathToXMLFile, baseFile);
+                    LoadXmlData();
+                }
+
             }
         }
 

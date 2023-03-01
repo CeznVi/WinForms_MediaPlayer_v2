@@ -24,18 +24,18 @@ namespace WinPlayer.Playlist
                 {
                     throw new FileNotFoundException($"Файл по указанному пути {value} Не существует");
                 }
-                if (true) //файл допустимого росширения
+                if (MediaFilter.IsMediaFile(value))
                 {
                     _path = value;
                 } else
                 {
-                    throw new ArgumentException("Не корректный формат файла");
+                    throw new ArgumentException($"Не корректный формат файла {value}");
                 }
             }
         }
         public override string ToString()
         {
-            return _path.Split('\\').Last();        //получаем имя и росширение файла....
+            return _path.Split('\\').Last();        
         }
     }
 }

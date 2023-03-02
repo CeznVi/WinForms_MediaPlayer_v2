@@ -45,6 +45,8 @@
             this.buttonEditMediaRecord = new System.Windows.Forms.Button();
             this.buttonAddMediaRecord = new System.Windows.Forms.Button();
             this.listBoxMediaRecords = new System.Windows.Forms.ListBox();
+            this.открытьФайлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.открытьПапкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.toolStripPlaylists.SuspendLayout();
@@ -64,6 +66,9 @@
             // 
             // файлToolStripMenuItem
             // 
+            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.открытьФайлToolStripMenuItem,
+            this.открытьПапкуToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
@@ -221,6 +226,20 @@
             this.listBoxMediaRecords.TabIndex = 4;
             this.listBoxMediaRecords.DoubleClick += new System.EventHandler(this.listBoxMediaRecords_DoubleClick);
             // 
+            // открытьФайлToolStripMenuItem
+            // 
+            this.открытьФайлToolStripMenuItem.Name = "открытьФайлToolStripMenuItem";
+            this.открытьФайлToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.открытьФайлToolStripMenuItem.Text = "Открыть файл";
+            this.открытьФайлToolStripMenuItem.Click += new System.EventHandler(this.buttonAddMediaRecord_Click);
+            // 
+            // открытьПапкуToolStripMenuItem
+            // 
+            this.открытьПапкуToolStripMenuItem.Name = "открытьПапкуToolStripMenuItem";
+            this.открытьПапкуToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.открытьПапкуToolStripMenuItem.Text = "Открыть папку";
+            this.открытьПапкуToolStripMenuItem.Click += new System.EventHandler(this.buttonOpenFolder_Click);
+            // 
             // PlayListsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -268,5 +287,7 @@
         private System.Windows.Forms.Button buttonAddMediaRecord;
         private System.Windows.Forms.ListBox listBoxMediaRecords;
         private System.Windows.Forms.Button buttonOpenFolder;
+        private System.Windows.Forms.ToolStripMenuItem открытьФайлToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem открытьПапкуToolStripMenuItem;
     }
 }

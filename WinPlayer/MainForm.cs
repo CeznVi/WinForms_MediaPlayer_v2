@@ -88,5 +88,10 @@ namespace WinPlayer
             плейлистToolStripMenuItem_Click(sender, e);
             _playListsForm.openAllMediaInFolder();
         }
+
+        private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/CeznVi/WinForms_MediaPlayer_v2");
+        }
     }
 }

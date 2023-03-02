@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,14 +53,23 @@ namespace WinPlayer
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = MediaFilter.GetOpenFileDialogFilter();
-
+            
             //Директория которая откроется по умолчанию (стоит папка медиа проекта)
             openFileDialog.InitialDirectory = GetPath.MediaDir();
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 MediaPlayer.URL = openFileDialog.FileName;
+                
+                this.toolStripStatusLabelInfo.Text = 
+                    $"Сейчас воспроизводится: {GetFileName.From(openFileDialog.FileName)}";
             }
+        }
+
+        public void setPlayStatus(string path)
+        {
+            this.toolStripStatusLabelInfo.Text =
+                  $"Сейчас воспроизводится: {GetFileName.From(path)}";
         }
     }
 }

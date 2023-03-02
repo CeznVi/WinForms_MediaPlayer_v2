@@ -56,6 +56,7 @@ namespace WinPlayer
             tmp.Checked = true;
             _currentToolStripMenuItem = tmp;
             toolStripStatusLabelInfo.Text = $"Текущий плейлист: {tmp.Text}";
+            
             listBoxMediaRecords.Items.Clear();
 
             foreach (PlayList item in _parentForm.PlayListsController.PlayLists)
@@ -99,6 +100,10 @@ namespace WinPlayer
         private void listBoxMediaRecords_DoubleClick(object sender, EventArgs e)
         {
             _parentForm.MediaPlayer.URL = ((MediaRecord)listBoxMediaRecords.SelectedItem).Path;
+            _parentForm.setPlayStatus(
+                ((MediaRecord)listBoxMediaRecords.SelectedItem).Path
+                );
+
         }
 
         /// <summary>

@@ -44,10 +44,6 @@ namespace WinPlayer
             _playListsForm.Show();
         }
 
-        private void WindowsMediaPlayer_Enter(object sender, EventArgs e)
-        {
-
-        }
 
         private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -66,10 +62,24 @@ namespace WinPlayer
             }
         }
 
+        /// <summary>
+        /// Публичный метод для изменения строки состояния 
+        /// </summary>
+        /// <param name="path"></param>
         public void setPlayStatus(string path)
         {
             this.toolStripStatusLabelInfo.Text =
                   $"Сейчас воспроизводится: {GetFileName.From(path)}";
+        }
+
+        private void WindowsMediaPlayer_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

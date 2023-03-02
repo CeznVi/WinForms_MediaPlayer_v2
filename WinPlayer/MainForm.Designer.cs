@@ -40,6 +40,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.WindowsMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WindowsMediaPlayer)).BeginInit();
@@ -137,11 +138,22 @@
             this.WindowsMediaPlayer.TabIndex = 2;
             this.WindowsMediaPlayer.Enter += new System.EventHandler(this.WindowsMediaPlayer_Enter);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(537, 451);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(241, 20);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "🅿🆁🅾🅶🆁🅰🅼🅸🅽🅶   🅱🆈   🅲🅴🆉🅽.🆅🅸";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 473);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.WindowsMediaPlayer);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip);
@@ -173,6 +185,7 @@
         private System.Windows.Forms.ToolStripMenuItem плейлистToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
+        private System.Windows.Forms.Label label1;
     }
 }
 

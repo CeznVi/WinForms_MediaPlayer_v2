@@ -254,7 +254,26 @@ namespace WinPlayer
                     {
                         MediaRecord old = (MediaRecord)listBoxMediaRecords.SelectedItem;
                         string newName = renameMediaRecord.PlayListName;
-                        MessageBox.Show($"Новое имя = {newName}");
+
+                        //удаляем старый плейлист
+                        _parentForm.PlayListsController.RemoveMediaRecord(
+                                    old,
+                                    (PlayList)toolStripComboBoxPlayList.SelectedItem);
+                        
+                        listBoxMediaRecords.Items.Remove(listBoxMediaRecords.SelectedItem);
+
+                        // переименовуем старый плейлист
+                        string newPath = Path.GetDirectoryName(old.Path) + '\\' + newName;
+                        File.Move(old.Path, newPath);
+                        old.Path = newPath;
+
+
+                        // добавить переименованый файл
+                        PlayList tmp = ((PlayList)toolStripComboBoxPlayList.SelectedItem);
+                        tmp.MediaRecords.Add(old);
+                        listBoxMediaRecords.Items.Add(tmp.MediaRecords.Last());
+                        _parentForm.PlayListsController.AddNewMediaRecord(tmp.MediaRecords.Last(), tmp);
+
                     }
 
                     

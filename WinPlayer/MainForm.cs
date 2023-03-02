@@ -16,6 +16,7 @@ namespace WinPlayer
     {
         private PlayListsForm _playListsForm;
         public PlayListController PlayListsController;
+        
         public MainForm()
         {
             InitializeComponent();
@@ -40,6 +41,25 @@ namespace WinPlayer
             }
             _playListsForm.Location = new Point(this.Location.X + this.Width - 13 , this.Location.Y);
             _playListsForm.Show();
+        }
+
+        private void WindowsMediaPlayer_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = MediaFilter.GetOpenFileDialogFilter();
+
+            //Директория которая откроется по умолчанию (стоит папка медиа проекта)
+            openFileDialog.InitialDirectory = GetPath.MediaDir();
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                MediaPlayer.URL = openFileDialog.FileName;
+            }
         }
     }
 }

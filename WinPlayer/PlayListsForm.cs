@@ -58,7 +58,6 @@ namespace WinPlayer
             toolStripStatusLabelInfo.Text = $"Текущий плейлист: {tmp.Text}";
             
             listBoxMediaRecords.Items.Clear();
-
             foreach (PlayList item in _parentForm.PlayListsController.PlayLists)
             {
                 if (item.Name == tmp.Text)
@@ -340,6 +339,13 @@ namespace WinPlayer
 
         }
 
+        public void openAllMediaInFolder()
+        {
+            if (toolStripComboBoxPlayList.SelectedItem != null)
+                this.buttonOpenFolder_Click(null, null);
+            else
+                MessageBox.Show("Вы должны выбрать плейлист!");
+        }
 
     }
 }

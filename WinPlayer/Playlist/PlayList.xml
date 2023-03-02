@@ -5,6 +5,10 @@
     <MediaRecord Path="C:\Users\Admin\Desktop\Програмирование\source\repos\ItStep_HW_OOP\WinForms_MediaPlayer_v2\MediaAndTrash\sample3.mp3" />
     <MediaRecord Path="C:\Users\Admin\Desktop\Програмирование\source\repos\ItStep_HW_OOP\WinForms_MediaPlayer_v2\MediaAndTrash\sample4_Video.mp4" />
     <MediaRecord Path="C:\Users\Admin\Desktop\Програмирование\source\repos\ItStep_HW_OOP\WinForms_MediaPlayer_v2\MediaAndTrash\sample5_Video.mp4" />
+    <MediaRecord Path="C:\Users\Admin\Desktop\Програмирование\source\repos\ItStep_HW_OOP\WinForms_MediaPlayer_v2\MediaAndTrash\sample2.mp3" />
+    <MediaRecord Path="C:\Users\Admin\Desktop\Програмирование\source\repos\ItStep_HW_OOP\WinForms_MediaPlayer_v2\MediaAndTrash\sample3.mp3" />
+    <MediaRecord Path="C:\Users\Admin\Desktop\Програмирование\source\repos\ItStep_HW_OOP\WinForms_MediaPlayer_v2\MediaAndTrash\sample4_Video.mp4" />
+    <MediaRecord Path="C:\Users\Admin\Desktop\Програмирование\source\repos\ItStep_HW_OOP\WinForms_MediaPlayer_v2\MediaAndTrash\sample5_Video.mp4" />
   </Playlist>
   <Playlist Name="Playlist1">
     <MediaRecord Path="C:\Users\Admin\Desktop\Програмирование\source\repos\ItStep_HW_OOP\WinForms_MediaPlayer_v2\Media\Video1.mp4" />

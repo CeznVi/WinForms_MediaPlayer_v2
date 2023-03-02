@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinPlayer.Playlist;
+using WMPLib;
 
 namespace WinPlayer
 {
@@ -17,7 +18,7 @@ namespace WinPlayer
     {
         private PlayListsForm _playListsForm;
         public PlayListController PlayListsController;
-        
+
         public MainForm()
         {
             InitializeComponent();
@@ -36,11 +37,11 @@ namespace WinPlayer
         }
         private void плейлистToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(_playListsForm == null)
+            if (_playListsForm == null)
             {
                 _playListsForm = new PlayListsForm(this);
             }
-            _playListsForm.Location = new Point(this.Location.X + this.Width - 13 , this.Location.Y);
+            _playListsForm.Location = new Point(this.Location.X + this.Width - 13, this.Location.Y);
             _playListsForm.Show();
         }
 
@@ -49,15 +50,15 @@ namespace WinPlayer
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = MediaFilter.GetOpenFileDialogFilter();
-            
+
             //Директория которая откроется по умолчанию (стоит папка медиа проекта)
             openFileDialog.InitialDirectory = GetPath.MediaDir();
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 MediaPlayer.URL = openFileDialog.FileName;
-                
-                this.toolStripStatusLabelInfo.Text = 
+
+                this.toolStripStatusLabelInfo.Text =
                     $"Сейчас воспроизводится: {GetFileName.From(openFileDialog.FileName)}";
             }
         }
@@ -80,6 +81,12 @@ namespace WinPlayer
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void openFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            плейлистToolStripMenuItem_Click(sender, e);
+            _playListsForm.openAllMediaInFolder();
         }
     }
 }
